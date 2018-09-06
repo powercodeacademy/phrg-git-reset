@@ -32,3 +32,4 @@ Take a few minutes to read about ways to use these commands.
 - [`git` documentation](https://git-scm.com/doc)
 - [`git log` documentation](https://git-scm.com/docs/git-log)
 - [`git reset` documentation](https://git-scm.com/docs/git-reset)
+- [Undoing Changes](https://www.atlassian.com/git/tutorials/undoing-changes/git-reset)
