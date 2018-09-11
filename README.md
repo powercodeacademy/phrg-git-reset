@@ -55,7 +55,7 @@ That leaves the information in parentheses after the commit SHAs. The bottom com
 
 # Git Reset
 
-`git reset` is a powerful command that is used to undo local changes to the state of a Git repo. The command takes two arguments. The first is a flag that specifies what mode `git reset` should run in (`--soft`, `--mixed` and `--hard`). The second is a commit reference (ref). When not passed a mode or ref, `git reset` uses `--mixed` and `HEAD`. So:
+`git reset` is a powerful command that is used to undo local changes to the state of a Git repo. The command takes two specifications. One specification is a flag (e.g. `--this-is-a-flagged-option`) that specifies what mode `git reset` should run. The three modes are `--soft`, `--mixed` and `--hard`. The second is an argument that is a commit reference. When not passed a mode or ref (short for reference), `git reset` uses `--mixed` and `HEAD`. So:
 
 ```
 git reset
@@ -71,9 +71,9 @@ git reset --mixed HEAD
 
 Before diving into modes, let's discuss how we point to different states in our git repo using commit references.
 
-Commit refs come in a few forms. We can use the entire SHA-1 commit hash. From our `git log` output, the latest commit ref would be `39ff2a73e31c7f2016d6374538c4c987e8e24e71`. But since git SHAs are so unique, it is more common and easier to simply use the first 7 characters, or `39ff2a7`. And since `39ff2a7` is where our project is currently pointed, the commit ref could also simply be `HEAD`.
+Commit refs come in a few forms. One way to reference a commit is to use the entire SHA-1 hash of a commit. From our `git log` output, the latest commit ref would be `39ff2a73e31c7f2016d6374538c4c987e8e24e71`. But since git SHAs are so unique, it is more common and easier to simply use its first 7 characters, which would be `39ff2a7` for this commit. A third option would be to use `HEAD`. Since `39ff2a7` is where our project is currently pointed (it is the `HEAD`), this is also an option.
 
-These three commands are identical in our current project state:
+These three commands are identical in our project's current state:
 
 ```
 git reset 39ff2a73e31c7f2016d6374538c4c987e8e24e71
@@ -87,7 +87,9 @@ If we want to `reset` to an earlier reference, all we need to do is grab the cor
 git reset fb9106c
 ```
 
-It is often easier to reset using `HEAD` instead of git SHAs though. Especially if we are only navigating a handfull of commits. The syntax for using `HEAD` is attaching the `~` or `^` after it and specifying how many commits to move backwards (`~` or `^` perform identically). So since our "Add kitty image" is only `1` commit back, instead of using the git SHA, we could use either of these commit refs to accomplish the same result.
+It is often easier to reset using `HEAD` as a point of reference instead of git SHAs though. Especially if we are only navigating a handfull of commits. The syntax for using `HEAD` to reference a commit is to attach the `~` or `^` after it and specify how many commits to move backwards. `~` or `^` perform identically.
+
+Since our "Add kitty image" is only `1` commit back, instead of using the git SHA, we could use either of these commit refs to accomplish the same result as `git reset fb9106c`.
 
 ```
 git reset HEAD~1
