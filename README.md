@@ -98,6 +98,45 @@ git reset HEAD^1
 
 ## Reset modes
 
+`git reset` has three different modes we can pass it. The mode determines what happens to the changes we roll back in the reset.
+
+### `--hard`
+
+Generally speaking, do not use this option. `--hard` will wipe out the changes we reset. It is more destructive than any of the rest of the modes.
+
+Using our `git log` example, let's run `git reset --hard HEAD~1` on our `example_branch`.
+
+1. Our local copy now points to the "Add kitty image" commit.
+1. There are no staged changes.
+1. There are no untracked changes.
+
+### Default `--mixed`
+
+We never really see `--mixed` because it is the default option. `--mixed` will take the changes we have reset and leave them untracked.
+
+Using our `git log` example, let's run `git reset HEAD~1` on our `example_branch`.
+
+1. Our local copy now points to the "Add kitty image" commit.
+1. There are no staged changes.
+1. Our "Add doggy image" content is untracked, but present.
+
+If we wish add this content back to our project, we would need to `git add`, `git commit`, and `git push --force-with-lease`.
+
+### `--soft`
+
+`--soft` will take the changes we have reset and leave them staged.
+
+Using our `git log` example, let's run `git reset --soft HEAD~1` on our `example_branch`.
+
+1. Our local copy now points to the "Add kitty image" commit.
+1. Our "Add doggy image" content is staged.
+1. There are no untracked changes.
+
+If we wish add this content back to our project, we would need to `git commit` and `git push --force-with-lease`.
+
+### Why force the push?
+
+When we reset a commit that has been `push`ed, we are removing the uniquely identified commit from our version control system, Github. Even if we end up pushing up the exact same content, git will assign it a new commit SHA with a new datestamp. Github will detect that a commit SHA is missing form our commit history when we attempt to push normally, and require that we force it and recognize we have made a destructive change.
 
 ## Resources
 
